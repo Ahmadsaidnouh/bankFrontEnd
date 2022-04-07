@@ -99,15 +99,13 @@ export class ViewCustomerComponent implements OnInit {
       this.dbSub = _UserService.getUser(this.userId).subscribe((data) => {
         this.user = data.user;
         this.users = data.users;
-      },(err) => {
-        this.invalidUserId = true;
-      })
-      if(!this.invalidUserId) {
         this.transSub = _TransferService.getUserTransfers(this.userId).subscribe((data) => {
           this.transferedByMe = data.transferedByYou;
           this.transferedToMe = data.transferedToYou;
         })
-      }
+      },(err) => {
+        this.invalidUserId = true;
+      })
 
     });
 
