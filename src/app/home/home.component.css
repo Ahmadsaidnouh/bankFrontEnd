@@ -1,5 +1,6 @@
 .curved {
   overflow-x: hidden;
+  overflow-y: hidden;
   padding-top: 150px;
 }
 
