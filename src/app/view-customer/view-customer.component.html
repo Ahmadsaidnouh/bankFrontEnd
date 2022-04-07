@@ -47,8 +47,8 @@
                     <button class="btn main-btn transfer-btn px-3" (click)="setShowLightBox()">Transfer</button>
                 </div>
                 <div class="col-12 py-3 table-container">
-                    <h2 class="text-center">Transfered By You</h2>
-                    <p *ngIf="transferedByMe.length <= 0; else table1" class="text-center">--No transfers yet--</p>
+                    <h2 class="text-center">Your Transfers</h2>
+                    <p *ngIf="userTransfers.length <= 0; else table1" class="text-center">--No transfers yet--</p>
                     <ng-template #table1>
                         <table class="table main-bg">
                             <thead>
@@ -57,17 +57,22 @@
                                 <th>Date</th>
                             </thead>
                             <tbody class="border-gradient border-gradient-purple">
-                                <tr *ngFor='let trans of transferedByMe; let i = index; let lst = last'
+                                <tr *ngFor='let trans of userTransfers; let i = index; let lst = last'
                                     [style.border-color]="lst?'transparent':'inherit'">
-                                    <td>${{trans.amount}}</td>
-                                    <td>{{trans.toUserId.email}}</td>
+                                    <td>
+                                        <span *ngIf="trans.fromUserId.email == userEmail;else plus">-</span>
+                                        <ng-template #plus>+</ng-template>
+                                            ${{trans.amount}}
+                                    </td>
+                                    <td *ngIf="trans.fromUserId.email == userEmail;else toUserEmail">{{trans.toUserId.email}}</td>
+                                    <ng-template #toUserEmail>{{trans.fromUserId.email}}</ng-template>
                                     <td>{{trans.createdAt.slice(0,10)}}</td>
                                 </tr>
                             </tbody>
                         </table>
                     </ng-template>
                 </div>
-                <div class="col-12 py-4 table-container">
+                <!-- <div class="col-12 py-4 table-container">
                     <h2 class="text-center">Transfered To You</h2>
                     <p *ngIf="transferedToMe.length <= 0; else table2" class="text-center">--No transfers yet--</p>
                     <ng-template #table2>
@@ -80,14 +85,18 @@
                             <tbody>
                                 <tr *ngFor='let trans of transferedToMe; let i = index; let lst = last'
                                     [style.border-color]="lst?'transparent':'inherit'">
-                                    <td>${{trans.amount}}</td>
+                                    <td>
+                                        <span *ngIf="trans.fromUserId.email == userEmail;else plus">-</span>
+                                        <ng-template #plus>+</ng-template>
+                                            ${{trans.amount}}
+                                    </td>
                                     <td>{{trans.fromUserId.email}}</td>
                                     <td>{{trans.createdAt.slice(0,10)}}</td>
                                 </tr>
                             </tbody>
                         </table>
                     </ng-template>
-                </div>
+                </div> -->
             </ng-template>
         </div>
     </div>

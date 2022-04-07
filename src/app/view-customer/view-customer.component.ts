@@ -16,10 +16,11 @@ export class ViewCustomerComponent implements OnInit {
   errorMessage = "";
   showLightBox: boolean = false;
   userId: string = "";
+  userEmail: string = "";
   user: any = { name: "", email: "", currentBalance: "" };
   users: any[] = [];
-  transferedByMe: any[] = [];
-  transferedToMe: any[] = [];
+  userTransfers: any[] = [];
+  // transferedToMe: any[] = [];
   amount: any;
   routeSub: any;
   dbSub: any;
@@ -60,7 +61,7 @@ export class ViewCustomerComponent implements OnInit {
           this._UserService.updateBalance(newToUserBalance, toUserId).subscribe();
           this.user.currentBalance = newFromUserBalance;
           this.transSub = this._TransferService.getUserTransfers(this.userId).subscribe((data) => {
-            this.transferedByMe = data.transferedByYou;
+            this.userTransfers = data.userTransfers;
           })
 
           this.messageType = 2;
@@ -99,9 +100,10 @@ export class ViewCustomerComponent implements OnInit {
       this.dbSub = _UserService.getUser(this.userId).subscribe((data) => {
         this.user = data.user;
         this.users = data.users;
+        this.userEmail = data.user.email;
         this.transSub = _TransferService.getUserTransfers(this.userId).subscribe((data) => {
-          this.transferedByMe = data.transferedByYou;
-          this.transferedToMe = data.transferedToYou;
+          this.userTransfers = data.userTransfers;
+          // this.transferedToMe = data.transferedToYou;
         })
       },(err) => {
         this.invalidUserId = true;
