@@ -11,6 +11,7 @@ import { UserService } from '../user.service';
   styleUrls: ['./view-customer.component.css'],
 })
 export class ViewCustomerComponent implements OnInit {
+  invalidUserId = false;
   messageType = 0;
   errorMessage = "";
   showLightBox: boolean = false;
@@ -97,13 +98,17 @@ export class ViewCustomerComponent implements OnInit {
       this.userId = params['userId'];
       this.dbSub = _UserService.getUser(this.userId).subscribe((data) => {
         this.user = data.user;
-
         this.users = data.users;
+      },(err) => {
+        console.log(err);
+        this.invalidUserId = true;
       })
-      this.transSub = _TransferService.getUserTransfers(this.userId).subscribe((data) => {
-        this.transferedByMe = data.transferedByYou;
-        this.transferedToMe = data.transferedToYou;
-      })
+      if(!this.invalidUserId) {
+        this.transSub = _TransferService.getUserTransfers(this.userId).subscribe((data) => {
+          this.transferedByMe = data.transferedByYou;
+          this.transferedToMe = data.transferedToYou;
+        })
+      }
 
     });
 

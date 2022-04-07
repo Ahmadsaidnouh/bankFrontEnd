@@ -114,3 +114,7 @@ thead {
     font-size: 18px;
   }
 }
+
+.alert {
+  border-radius: 35px !important;
+}

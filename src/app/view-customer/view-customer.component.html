@@ -6,82 +6,89 @@
         </div>
     </div>
     <div class="container bg-white p-4 content mt-4">
-        <div class="row bg-gradien">
-            <div class="col-12 pt-3 border-bottom">
-                <div class="row  align-items-center  py-2">
-                    <div class="col-2">
-                        <span>Name </span>
-                    </div>
-                    <div class="col-9 ps-sm-0 offset-md-0 offset-1">
-                        <p class="m-0">: {{user.name}}</p>
-                    </div>
+        <div class="row">
+            <div *ngIf="invalidUserId;else showCustomerData" class="col-12">
+                <div class="alert alert-danger text-center mb-0">
+                    No customer with such ID!!
                 </div>
             </div>
-            <div class="col-12 border-bottom">
-                <div class="row  align-items-center  py-2">
-                    <div class="col-2">
-                        <span>Email </span>
-                    </div>
-                    <div class="col-9 ps-sm-0 offset-md-0 offset-1">
-                        <p class="m-0">: {{user.email}}</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-12">
-                <div class="row align-items-center py-2">
-                    <div class="col-2">
-                        <span>Current Balance </span>
-                    </div>
-                    <div class="col-9 ps-sm-0 offset-md-0 offset-1">
-                        <p class="m-0">: ${{user.currentBalance}}</p>
+            <ng-template #showCustomerData>
+                <div class="col-12 pt-3 border-bottom">
+                    <div class="row  align-items-center  py-2">
+                        <div class="col-2">
+                            <span>Name </span>
+                        </div>
+                        <div class="col-9 ps-sm-0 offset-md-0 offset-1">
+                            <p class="m-0">: {{user.name}}</p>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-12 my-5 d-flex justify-content-center align-items-center">
-                <button class="btn main-btn transfer-btn px-3" (click)="setShowLightBox()">Transfer</button>
-            </div>
-            <div class="col-12 py-3 table-container">
-                <h2 class="text-center">Transfered By You</h2>
-                <p *ngIf="transferedByMe.length <= 0; else table1" class="text-center">--No transfers yet--</p>
-                <ng-template #table1>
-                    <table class="table main-bg">
-                        <thead>
-                            <th>Amount</th>
-                            <th>Receiver Email</th>
-                            <th>Date</th>
-                        </thead>
-                        <tbody>
-                            <tr *ngFor='let trans of transferedByMe; let i = index; let lst = last'
-                                [style.border-color]="lst?'transparent':'inherit'">
-                                <td>${{trans.amount}}</td>
-                                <td>{{trans.toUserId.email}}</td>
-                                <td>{{trans.createdAt.slice(0,10)}}</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </ng-template>
-            </div>
-            <div class="col-12 py-4 table-container">
-                <h2 class="text-center">Transfered To You</h2>
-                <p *ngIf="transferedToMe.length <= 0; else table2" class="text-center">--No transfers yet--</p>
-                <ng-template #table2>
-                    <table class="table main-bg">
-                        <thead>
-                            <th>Amount</th>
-                            <th>Sender Email</th>
-                            <th>Date</th>
-                        </thead>
-                        <tbody>
-                            <tr *ngFor='let trans of transferedToMe; let i = index; let lst = last'
-                                [style.border-color]="lst?'transparent':'inherit'">
-                                <td>${{trans.amount}}</td>
-                                <td>{{trans.fromUserId.email}}</td>
-                                <td>{{trans.createdAt.slice(0,10)}}</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </ng-template>
-            </div>
+                <div class="col-12 border-bottom">
+                    <div class="row  align-items-center  py-2">
+                        <div class="col-2">
+                            <span>Email </span>
+                        </div>
+                        <div class="col-9 ps-sm-0 offset-md-0 offset-1">
+                            <p class="m-0">: {{user.email}}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12">
+                    <div class="row align-items-center py-2">
+                        <div class="col-2">
+                            <span>Current Balance </span>
+                        </div>
+                        <div class="col-9 ps-sm-0 offset-md-0 offset-1">
+                            <p class="m-0">: ${{user.currentBalance}}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 my-5 d-flex justify-content-center align-items-center">
+                    <button class="btn main-btn transfer-btn px-3" (click)="setShowLightBox()">Transfer</button>
+                </div>
+                <div class="col-12 py-3 table-container">
+                    <h2 class="text-center">Transfered By You</h2>
+                    <p *ngIf="transferedByMe.length <= 0; else table1" class="text-center">--No transfers yet--</p>
+                    <ng-template #table1>
+                        <table class="table main-bg">
+                            <thead>
+                                <th>Amount</th>
+                                <th>Receiver Email</th>
+                                <th>Date</th>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor='let trans of transferedByMe; let i = index; let lst = last'
+                                    [style.border-color]="lst?'transparent':'inherit'">
+                                    <td>${{trans.amount}}</td>
+                                    <td>{{trans.toUserId.email}}</td>
+                                    <td>{{trans.createdAt.slice(0,10)}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </ng-template>
+                </div>
+                <div class="col-12 py-4 table-container">
+                    <h2 class="text-center">Transfered To You</h2>
+                    <p *ngIf="transferedToMe.length <= 0; else table2" class="text-center">--No transfers yet--</p>
+                    <ng-template #table2>
+                        <table class="table main-bg">
+                            <thead>
+                                <th>Amount</th>
+                                <th>Sender Email</th>
+                                <th>Date</th>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor='let trans of transferedToMe; let i = index; let lst = last'
+                                    [style.border-color]="lst?'transparent':'inherit'">
+                                    <td>${{trans.amount}}</td>
+                                    <td>{{trans.fromUserId.email}}</td>
+                                    <td>{{trans.createdAt.slice(0,10)}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </ng-template>
+                </div>
+            </ng-template>
         </div>
     </div>
 </div>
