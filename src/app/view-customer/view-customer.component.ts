@@ -100,7 +100,6 @@ export class ViewCustomerComponent implements OnInit {
         this.user = data.user;
         this.users = data.users;
       },(err) => {
-        console.log(err);
         this.invalidUserId = true;
       })
       if(!this.invalidUserId) {
