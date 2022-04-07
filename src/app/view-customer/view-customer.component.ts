@@ -29,9 +29,9 @@ export class ViewCustomerComponent implements OnInit {
   transferMoney() {
     this.messageType = 0;
     let selectDD: any = document.getElementById("selectDropdown");
-
-    if (this.amount <= 0 || this.amount == null) {
-      this.errorMessage = "Transfer amount must be more than zero!!"
+    
+    if (this.amount <= 0 || this.amount == null || !Number.isInteger(this.amount)) {
+      this.errorMessage = "Transfer amount must be an integer more than zero!!"
       this.messageType = 1;
     }
     else if (selectDD.value == "Select Email") {
