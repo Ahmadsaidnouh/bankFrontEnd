@@ -56,7 +56,7 @@
                                 <th>Receiver Email</th>
                                 <th>Date</th>
                             </thead>
-                            <tbody>
+                            <tbody class="border-gradient border-gradient-purple">
                                 <tr *ngFor='let trans of transferedByMe; let i = index; let lst = last'
                                     [style.border-color]="lst?'transparent':'inherit'">
                                     <td>${{trans.amount}}</td>

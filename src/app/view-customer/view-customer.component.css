@@ -82,6 +82,10 @@ th {
   text-align: center;
 }
 
+th {
+  padding: 8px;
+}
+
 h2 {
   font-weight: 600;
 }
