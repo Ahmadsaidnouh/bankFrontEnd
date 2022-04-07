@@ -1,0 +1,29 @@
+<div class="main-bg">
+    <div class="curved main-bg">
+        <div class="container pb-5 text-white text-center">
+
+            <h1 class="mb-5">All Customers Table</h1>
+            <p>A general look at customers' names and emails.</p>
+        </div>
+    </div>
+    <div class="container table-container p-4">
+        <table class="table">
+            <thead>
+                <th>Index</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>View</th>
+            </thead>
+            <tbody>
+                <tr *ngFor='let user of users; let i = index; let lst = last'
+                    [style.border-color]="lst?'transparent':'inherit'">
+                    <td>{{i + 1}}</td>
+                    <td>{{user.name}}</td>
+                    <td>{{user.email}}</td>
+                    <td><a class="btn main-btn" routerLink="viewCustomer/{{user._id}}">view customer</a></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+</div>

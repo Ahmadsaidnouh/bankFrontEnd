@@ -1,0 +1,28 @@
+.curved {
+  padding-top: 150px;
+}
+
+.curved h1 {
+  font-size: 50px;
+  font-weight: 600;
+}
+
+.curved p {
+  font-size: 20px;
+}
+
+.svg1 {
+  margin-bottom: -1px;
+}
+
+.svg2 {
+  transform: rotate(180deg);
+  margin-top: -4px;
+  margin-bottom: -5px;
+}
+
+@media screen and (max-width: 600px) {
+  .curved h1 {
+    font-size: 40px;
+  }
+}

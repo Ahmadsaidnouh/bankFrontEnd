@@ -1,0 +1,53 @@
+.curved {
+  padding-top: 150px;
+}
+
+.curved h1 {
+  font-size: 50px;
+  font-weight: 600;
+}
+
+.curved p {
+  font-size: 20px;
+}
+
+td,
+th {
+  text-align: center;
+}
+
+.table-container {
+  background-color: white;
+  border-radius: 35px;
+  overflow-x: auto;
+}
+
+.table-container th {
+  font-weight: 900;
+  font-size: 25px;
+}
+
+.table-container td {
+  font-weight: 400;
+  font-size: 17px;
+}
+
+.table a {
+  color: white;
+  font-weight: 400;
+  border-radius: 25px !important;
+}
+
+@media screen and (max-width: 600px) {
+  .table-container {
+    margin-left: auto;
+    margin-right: auto;
+    width: 90%;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .curved h1 {
+    font-size: 40px;
+  }
+}

@@ -1,0 +1,27 @@
+<nav class="main-bg" [class.gradient-bg]="navColored">
+  <div class="d-flex justify-content-center align-items-center">
+    <i class="fa-solid fa-building-columns fa-3x pe-3 logo-color"></i>
+    <div class="nav-logo"><a routerLink="home">Bank</a></div>
+  </div>
+  <div class="nav-content">
+    <ul>
+      <li (click)="changeNavNumber(1)"><a routerLink="home" [style.color]="navNumber==1?'#fff':'#d4d3d4'">Home</a></li>
+      <li (click)="changeNavNumber(2)"><a routerLink="viewAllCustomers"
+          [style.color]="navNumber==2?'#fff':'#d4d3d4'">viewAllCustomers</a></li>
+    </ul>
+  </div>
+</nav>
+<nav class="nav-2 main-bg" [class.gradient-bg]="navColored">
+  <div class="d-flex justify-content-center align-items-center">
+    <i class="fa-solid fa-building-columns fa-3x pe-3 logo-color"></i>
+    <div class="nav-logo"><a routerLink="home">Bank</a></div>
+  </div>
+  <div class="nav-2-content" (click)="changeIsNavClosed()" [style.background-color]="isNavClosed?'transparent':'#555'">
+    <i class="fas fa-bars"></i>
+    <ul [style.height]="isNavClosed?'0px':'100px'">
+      <li (click)="changeNavNumber(1)"><a routerLink="home" [style.color]="navNumber==1?'#fff':'#d4d3d4'">Home</a></li>
+      <li (click)="changeNavNumber(2)"><a routerLink="viewAllCustomers"
+          [style.color]="navNumber==2?'#fff':'#d4d3d4'">viewAllCustomers</a></li>
+    </ul>
+  </div>
+</nav>

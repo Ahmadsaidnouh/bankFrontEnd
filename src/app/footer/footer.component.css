@@ -1,0 +1,47 @@
+footer {
+    padding: 50px 85px;
+    display: flex;
+    justify-content: space-between;
+    color: #fff;
+    font-weight: 550;
+}
+
+.copy-r a {
+    color: #3120c9;
+    font-weight: 600;
+    transition: color 0.5s;
+}
+
+.links a {
+    text-align: center;
+    padding: 0px 15px;
+    color: #ffffff;
+    font-weight: 550;
+    transition: all 0.5s;
+}
+
+.links a:hover {
+    color: #3120c9;
+}
+
+.copy-r a:hover {
+    color: #990cb6;
+}
+
+@media screen and (max-width:992px) {
+    footer {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 66px 0px;
+    }
+
+    .copy-r {
+        margin-bottom: 16px;
+        text-align: center;
+    }
+
+    .links {
+        text-align: center;
+    }
+}

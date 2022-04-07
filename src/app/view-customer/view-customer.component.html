@@ -1,0 +1,127 @@
+<div class="main-bg">
+    <div class="curved main-bg">
+        <div class="container pb-5 text-white text-center">
+            <h1 class="mb-5">View Customer</h1>
+            <p>A general look at customer name and email.</p>
+        </div>
+    </div>
+    <div class="container bg-white p-4 content mt-4">
+        <div class="row bg-gradien">
+            <div class="col-12 pt-3 border-bottom">
+                <div class="row  align-items-center  py-2">
+                    <div class="col-2">
+                        <span>Name </span>
+                    </div>
+                    <div class="col-9 ps-sm-0 offset-md-0 offset-1">
+                        <p class="m-0">: {{user.name}}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 border-bottom">
+                <div class="row  align-items-center  py-2">
+                    <div class="col-2">
+                        <span>Email </span>
+                    </div>
+                    <div class="col-9 ps-sm-0 offset-md-0 offset-1">
+                        <p class="m-0">: {{user.email}}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12">
+                <div class="row align-items-center py-2">
+                    <div class="col-2">
+                        <span>Current Balance </span>
+                    </div>
+                    <div class="col-9 ps-sm-0 offset-md-0 offset-1">
+                        <p class="m-0">: ${{user.currentBalance}}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 my-5 d-flex justify-content-center align-items-center">
+                <button class="btn main-btn transfer-btn px-3" (click)="setShowLightBox()">Transfer</button>
+            </div>
+            <div class="col-12 py-3 table-container">
+                <h2 class="text-center">Transfered By You</h2>
+                <p *ngIf="transferedByMe.length <= 0; else table1" class="text-center">--No transfers yet--</p>
+                <ng-template #table1>
+                    <table class="table main-bg">
+                        <thead>
+                            <th>Amount</th>
+                            <th>Receiver Email</th>
+                            <th>Date</th>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor='let trans of transferedByMe; let i = index; let lst = last'
+                                [style.border-color]="lst?'transparent':'inherit'">
+                                <td>${{trans.amount}}</td>
+                                <td>{{trans.toUserId.email}}</td>
+                                <td>{{trans.createdAt.slice(0,10)}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </ng-template>
+            </div>
+            <div class="col-12 py-4 table-container">
+                <h2 class="text-center">Transfered To You</h2>
+                <p *ngIf="transferedToMe.length <= 0; else table2" class="text-center">--No transfers yet--</p>
+                <ng-template #table2>
+                    <table class="table main-bg">
+                        <thead>
+                            <th>Amount</th>
+                            <th>Sender Email</th>
+                            <th>Date</th>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor='let trans of transferedToMe; let i = index; let lst = last'
+                                [style.border-color]="lst?'transparent':'inherit'">
+                                <td>${{trans.amount}}</td>
+                                <td>{{trans.fromUserId.email}}</td>
+                                <td>{{trans.createdAt.slice(0,10)}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </ng-template>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div *ngIf="showLightBox" class="light-box-main d-flex justify-content-center align-items-center p-3">
+    <button class="btn close-btn" (click)="resetShowLightBox()">
+        <i class="fa-solid fa-xmark fa-3"></i>
+    </button>
+    <div class="container bg-white p-4 ">
+        <div class="row">
+            <div class="col-12 ">
+                <div class="row mt-2 pb-4 align-items-center">
+                    <div class="col-3">
+                        <span>Transfer amount($): </span>
+                    </div>
+                    <div class="col-8 col-sm-9 ps-sm-0 offset-sm-0 offset-1">
+                        <input type="number" class="form-control" [(ngModel)]="amount">
+                    </div>
+                </div>
+                <div class="row align-items-center pb-4">
+                    <div class="col-3">
+                        <span>Receiver email: </span>
+                    </div>
+                    <div class="col-8 col-sm-9 ps-sm-0 offset-sm-0 offset-1">
+                        <select id="selectDropdown" class="form-select" aria-label="Default select example">
+                            <option selected>Select Email</option>
+                            <option *ngFor="let user of users" value="{{user._id}}">{{user.email}}</option>
+                        </select>
+                    </div>
+                </div>
+                <div *ngIf="messageType == 1" class="col-12">
+                    <div class="mt-3 alert alert-danger text-center">{{errorMessage}}</div>
+                </div>
+                <div *ngIf="messageType == 2" class="col-12">
+                    <div class="mt-3 alert alert-success text-center">Money transfered successfully</div>
+                </div>
+            </div>
+            <div class="col-12 mt-4 d-flex justify-content-center align-items-center">
+                <button class="btn main-btn transfer-btn px-3" (click)="transferMoney()">Transfer money</button>
+            </div>
+        </div>
+    </div>
+</div>
