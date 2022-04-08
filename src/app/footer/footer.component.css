@@ -7,7 +7,7 @@ footer {
 }
 
 .copy-r a {
-    color: #3120c9;
+    color: #776dca;
     font-weight: 600;
     transition: color 0.5s;
 }
@@ -21,11 +21,11 @@ footer {
 }
 
 .links a:hover {
-    color: #3120c9;
+    color: rgb(28,73,131);
 }
 
 .copy-r a:hover {
-    color: #990cb6;
+    color: rgb(18,7,37);
 }
 
 @media screen and (max-width:992px) {
