@@ -25,6 +25,7 @@ export class ViewCustomerComponent implements OnInit {
   routeSub: any;
   dbSub: any;
   transSub: any;
+  showLoader = true;
 
   transferMoney() {
     this.messageType = 0;
@@ -103,10 +104,11 @@ export class ViewCustomerComponent implements OnInit {
         this.userEmail = data.user.email;
         this.transSub = _TransferService.getUserTransfers(this.userId).subscribe((data) => {
           this.userTransfers = data.userTransfers;
-          // this.transferedToMe = data.transferedToYou;
+          this.showLoader = false;
         })
       },(err) => {
         this.invalidUserId = true;
+        this.showLoader = false;
       })
 
     });

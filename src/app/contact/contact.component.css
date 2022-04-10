@@ -158,13 +158,13 @@ a {
 
 .contact-list i {
     margin-right: 5px;
-    color: rgb(107, 171, 252);
+    color: rgb(28, 73, 131);
     font-size: 20px;
     transition: 0.5s color;
 }
 
 .contact-list i:hover {
-    color: rgb(137, 106, 190);
+    color: rgb(18, 7, 37);
 }
 
 input:focus,

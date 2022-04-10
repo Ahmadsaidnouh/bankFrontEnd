@@ -11,9 +11,13 @@ export class ViewAllCustomersComponent implements OnInit {
 
   users: any[] = []
   subscription: any;
+  showLoader = true;
 
   constructor(private _UserService: UserService) {
-    this.subscription = _UserService.getAllUsers().subscribe((data) => { this.users = data.users })
+    this.subscription = _UserService.getAllUsers().subscribe((data) => {
+      this.users = data.users;
+      this.showLoader = false;
+    })
   }
 
   ngOnInit(): void {
